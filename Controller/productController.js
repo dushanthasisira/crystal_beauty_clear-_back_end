@@ -1,6 +1,6 @@
 import Product from "../models/product.js";
 
-export async function createProdcut(req,res){
+export function createProdcut(req,res){
     if(req.user == null){
         res.status(403).json({
             message : "You need to loging frist"
@@ -15,22 +15,19 @@ export async function createProdcut(req,res){
     }
 
     const product = new Product(req.body);
-   try {
-     await product.save()
-     res.json({
-        message : "Prodcut Saved Successfull"
-     })
-
-   }catch{
-     res.json({
-        message : "Prodcut Not Saved "
-     })
-
-   }
-  
-
-   
-   
+    product.save().then(
+        ()=>{
+           res.json({
+            message : "Prodcut Save Successfully"
+        }) 
+        }
+    ).catch(
+        (err)=>{
+            res.status(500).json({
+                message : "Prodcut Not Save"
+            })
+        }
+    )
 }
 
 export function getProdcut(req,res){

@@ -1,6 +1,6 @@
 
 import Oder from "../models/oder.js";
-import Order from "../models/oder.js"; 
+import Order from "../models/oder.js";
 export function createOder(req,res){
     if(req.user == null){
         res.status(401).json({
