@@ -5,8 +5,10 @@ import userRouter from './routes/userRouter.js';
 import productRouter from './routes/prodcutRouter.js';
 import veryfyJWT from './middleware/auth.js';
 import oderRouter from './routes/oderRouter.js';
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
-mongoose.connect("mongodb+srv://new:123@cluster0.ara0jup.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(
+mongoose.connect(process.env.MONGO_URL).then(
   ()=>{
     console.log("Connected To The Database")
   }  
