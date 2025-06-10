@@ -5,9 +5,13 @@ import userRouter from './routes/userRouter.js';
 import productRouter from './routes/prodcutRouter.js';
 import veryfyJWT from './middleware/auth.js';
 import oderRouter from './routes/oderRouter.js';
+import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
+
+app.use(cors())
+
 mongoose.connect(process.env.MONGO_URL).then(
   ()=>{
     console.log("Connected To The Database")

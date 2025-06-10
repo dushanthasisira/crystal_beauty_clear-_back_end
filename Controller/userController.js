@@ -77,6 +77,7 @@ export function loginUser(req,res){
                         res.json({
                               message : "Login Successfull",
                               token : token,
+                              user : userData,
                         });
 
                   }else{
