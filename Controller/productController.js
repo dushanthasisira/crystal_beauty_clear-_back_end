@@ -47,6 +47,30 @@ export function getProdcut(req,res){
     )
 }
 
+export async function getPrudctById(req, res, params) {
+  try {
+  
+    const productId = req.params.id;
+
+    const product = await Product.findOne({ productId: productId });
+
+    if (product == null) {
+      return res.status(404).json({
+        message: "Product not found"
+      });
+    }
+
+    return res.json({
+      product: product
+    });
+
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+
 export function deleteProdcut(req,res){
      if(req.user == null){
         res.status(403).json({
